@@ -1,0 +1,272 @@
+/* No changes to reset or variables */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: rgb(252, 240, 249);
+  --primary: orange;
+  --secondary: rgb(208, 136, 148);
+  --white: white;
+  --dark-white: rgb(152, 130, 130);
+  --gray: rgb(232, 216, 226);
+  --stroke-color: rgb(43, 41, 41);
+}
+
+body {
+  background-color: black;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 20px;
+}
+
+#webChat-icon {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#webChat-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.container {
+  background-color: #111;
+  color: white;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container h1 {
+  text-align: center;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+#messageArea {
+  text-align: center;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+/* Chat overlay area */
+#overlay {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--gray);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* User chat bubble */
+.user_prompt {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: black;
+  padding: 10px 15px;
+  margin: 6px 0;
+  border-radius: 12px;
+  max-width: 70%;
+  text-align: right;
+}
+
+/* AI chat bubble */
+.ai_res {
+  align-self: flex-start;
+  background-color: #ffdfb0;
+  color: black;
+  padding: 10px 15px;
+  margin: 6px 0;
+  border-radius: 12px;
+  max-width: 70%;
+  text-align: left;
+}
+
+/* Loading animation */
+.loading {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.loading span {
+  width: 8px;
+  height: 8px;
+  background: #333;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loading span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  bottom: 0;
+  background-color: black;
+  padding: 10px;
+  border-top: 1px solid var(--gray);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.input-area input {
+  flex: 1;
+  height: 50px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--dark-white);
+  border-radius: 5px;
+  outline: none;
+  background-color: #222;
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: orange;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: orangered;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+
+
+/* 🔁 Make chat layout responsive on smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  #webChat-icon {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #webChat-icon h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  #overlay {
+    height: 300px;
+    font-size: 0.95rem;
+  }
+
+  .user_prompt,
+  .ai_res {
+    max-width: 90%;
+    font-size: 0.95rem;
+  }
+
+  .input-area {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-area input {
+    height: 45px;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #overlay {
+    height: 250px;
+  }
+
+  .container h1 {
+    font-size: 1.2rem;
+  }
+
+  #messageArea {
+    font-size: 0.9rem;
+  }
+
+  .user_prompt,
+  .ai_res {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
+/* 🧱 Chat box larger on mobile */
+@media (max-width: 480px) {
+  .input-area input {
+    height: 55px;            /* Taller input box */
+    font-size: 1.1rem;       /* Larger text */
+    padding: 12px;           /* Extra padding */
+  }
+
+  button {
+    height: 55px;            /* Match input height */
+    font-size: 1.1rem;       /* Bigger button text */
+  }
+
+  .input-area {
+    gap: 10px;
+  }
+}
